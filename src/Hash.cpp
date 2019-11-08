@@ -3,33 +3,38 @@
 
 Hash::Hash() {
 	collisionCount = 0;
-	for (int i = 0; i < 1000; i++) {
+	tableSize = 1000;
+	for (int i = 0; i < tableSize; i++) {
 		hashTable[i] = new HashNode*[20];
 	}
 }
 
 bool Hash::Insert(string keyVal, Employee* emp) {
+	// Hash function
 	int hashValue = 0;
-	for (int i = 0; i < keyVal.size(); i++) {
-		hashValue += static_cast<int>(keyVal[i]);
+	int index;
+	for (int i = 0; i < keyVal.length(); i++) {
+		hashValue = hashValue + static_cast<int>(keyVal[i]);
 	}
-	hashValue %= 1000;
+	index = hashValue % tableSize;
+
+	// Create the HashNode to insert into table
 	HashNode* newHashNode = new HashNode();
 	newHashNode->keyValue = keyVal;
 	newHashNode->employee = emp;
-	if (!hashTable[hashValue][0]) {
-		hashTable[hashValue][0] = newHashNode;
-		cout << "HashNode properly inserted at key: " << hashValue << endl;
+	if (hashTable[index][0] == nullptr) {
+		hashTable[index][0] = newHashNode;
+		cout << "HashNode properly inserted at key: " << index << ", " << "0" << endl;
 		return true;
 	}
 	else {
 		int i = 0;
-		while (hashTable[hashValue][i] != nullptr) {
+		while (hashTable[index][i] != nullptr) {
 			i++;
 			collisionCount++;
 		}
-		hashTable[hashValue][i] = newHashNode;
-		cout << "HashNode properly inserted at key: " << hashValue << endl;
+		hashTable[index][i] = newHashNode;
+		cout << "HashNode properly inserted at key: " << index << ", " << i << endl;
 		return true;
 	}
 	return false;
@@ -63,17 +68,22 @@ int Hash::CollisionCount() {
 
 void Hash::PrintCollisionCount() {
 	for (int i = 0; i < 1000; i++) {
-		collisionCount = 0;
-		for (int j = 1; j < 20; j++) {
-			while (hashTable[i][j] != nullptr) {
-				collisionCount++;
+		int newCollisionCount = 0;
+		for (int j = 0; j < 20; j++) {
+			if (hashTable[i][j] != nullptr) {
+				newCollisionCount++;
 			}
 		}
-		cout << "Row " << i + 1 << " Collisions: " << collisionCount << endl;
+		cout << "Row " << i + 1 << " Collisions: " << newCollisionCount << endl;
 	}
 
 }
 
+void Hash::PrintARow(){
+	for(int i = 0; i < 4; i++) {
+		cout << (hashTable[0][i]) << endl;
+	}
+}
 
 
 

@@ -48,7 +48,6 @@ int main() {
 //	newHash->keyValue = newEmp->employeeKey;
 //	newHash->employee = newEmp;
 //
-//	Employee* foundEmployee = new Employee();
 //
 //
 //
@@ -56,7 +55,17 @@ int main() {
 //		cout << "Successful insertion." << endl;
 //	}
 //
+//
+//	Employee* foundEmployee = new Employee();
+//
+//	string tempKey;
+//	cout << "Enter an employee key and I will find it: ";
+//	cin >> tempKey;
+//
+//	newEmp->employeeKey = tempKey;
+//
 //	foundEmployee = newHashTable->Find(newEmp->employeeKey);
+//
 //
 //	cout << "\nFound Employee Information\n";
 //	cout << "Employee Key: " << foundEmployee->employeeKey << endl;
@@ -70,6 +79,7 @@ int main() {
 
 	cout << "Program ending.. goodbye!" << endl; // prints !!!Hello World!!!
 
-	//inputFile.close();
+
+	iFile.close();
 	return 0;
 }
