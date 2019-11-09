@@ -42,24 +42,17 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 
 Employee* Hash::Find(string keyVal) {
 	int hashValue = 0;
-		for (int i = 0; i < keyVal.size(); i++) {
+	int index;
+		for (int i = 0; i < keyVal.length(); i++) {
 			hashValue += static_cast<int>(keyVal[i]);
 		}
-		hashValue %= 1000;
+		index = hashValue % tableSize;
 
-	if (hashTable[hashValue][0]) {
-		return hashTable[hashValue][0]->employee;
+	for (int i = 0; i < 20; i++) {
+		if (hashTable[index][i]->employee->employeeKey == keyVal)
+			return hashTable[index][i]->employee;
 	}
-	else {
-		int i = 0;
-		while (hashTable[hashValue][i]->keyValue != keyVal) {
-			i++;
-			if (i > 20) {
-				return nullptr;
-			}
-		}
-		return hashTable[hashValue][i]->employee;
-	}
+	return nullptr;
 }
 
 int Hash::CollisionCount() {
@@ -68,24 +61,14 @@ int Hash::CollisionCount() {
 
 void Hash::PrintCollisionCount() {
 	for (int i = 0; i < 1000; i++) {
-		int newCollisionCount = 0;
-		for (int j = 0; j < 20; j++) {
-			if (hashTable[i][j] != nullptr) {
-				newCollisionCount++;
-			}
+		int rowCollisions = 0;
+		for (int j = 1; j < 20; j++) {
+			if (hashTable[i][j] != nullptr)
+				rowCollisions++;
 		}
-		cout << "Row " << i + 1 << " Collisions: " << newCollisionCount << endl;
-	}
-
-}
-
-void Hash::PrintARow(){
-	for(int i = 0; i < 4; i++) {
-		cout << (hashTable[0][i]) << endl;
+		cout << "Row index " << i + 1 << " had " << rowCollisions << " collisions." << endl;
 	}
 }
-
-
 
 Hash::~Hash() {
 	// TODO Auto-generated destructor stub
