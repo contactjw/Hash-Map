@@ -79,8 +79,12 @@ Hash::~Hash() {
 	for (int i = 0; i < 1000; i++) {
 		for (int j = 0; j < 20; j++) {
 			delete hashTable[i][j]->employee;
+			hashTable[i][j]->employee = nullptr;
 			hashTable[i][j] = nullptr;
+			delete [] hashTable[j];
 		}
 	}
 }
+
+
 
