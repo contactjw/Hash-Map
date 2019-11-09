@@ -71,6 +71,11 @@ void Hash::PrintCollisionCount() {
 }
 
 Hash::~Hash() {
-	// TODO Auto-generated destructor stub
+	for (int i = 0; i < 1000; i++) {
+		for (int j = 0; j < 20; j++) {
+			delete hashTable[i][j]->employee;
+			hashTable[i][j] = nullptr;
+		}
+	}
 }
 

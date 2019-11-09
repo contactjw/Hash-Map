@@ -20,7 +20,7 @@ int main() {
 
 
 	if (iFile.is_open()) {
-		cout << "The file is open...";
+		cout << "The file is open... reading employee information.\n\n";
 	}
 	string key;
 	string lastName;
@@ -39,23 +39,7 @@ int main() {
 
 	}
 
-//	Employee* newEmp = new Employee();
-//	newEmp->employeeKey = "Emp09";
-//	newEmp->firstName = "John";
-//	newEmp->lastName = "West";
-//	newEmp->income = 1200000;
-//	HashNode* newHash = new HashNode();
-//	newHash->keyValue = newEmp->employeeKey;
-//	newHash->employee = newEmp;
-//
-//
-//
-//
-//	if(newHashTable->Insert(newEmp->employeeKey, newEmp)) {
-//		cout << "Successful insertion." << endl;
-//	}
-//
-//
+
 //	Employee* foundEmployee = new Employee();
 //
 //	string tempKey;
