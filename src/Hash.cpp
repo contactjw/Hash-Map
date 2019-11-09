@@ -24,7 +24,7 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 	newHashNode->employee = emp;
 	if (hashTable[index][0] == nullptr) {
 		hashTable[index][0] = newHashNode;
-		cout << "HashNode properly inserted at key: " << index << ", " << "0" << endl;
+		cout << "HashNode properly inserted at index " << index << " bucket " << "0" << endl;
 		return true;
 	}
 	else {
@@ -34,7 +34,7 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 			collisionCount++;
 		}
 		hashTable[index][i] = newHashNode;
-		cout << "HashNode properly inserted at key: " << index << ", " << i << endl;
+		cout << "HashNode properly inserted at index " << index << " bucket " << i << endl;
 		return true;
 	}
 	return false;
@@ -49,7 +49,6 @@ Employee* Hash::Find(string keyVal) {
 	}
 	index = hashValue % tableSize;
 
-// THIS IS WHERE I LEFT OFF!!!!!
 	for (int i = 0; i < 20; i++) {
 		if (hashTable[index][i] == nullptr)
 			break;
@@ -57,9 +56,6 @@ Employee* Hash::Find(string keyVal) {
 			return hashTable[index][i]->employee;
 		}
 	}
-
-// THIS IS WHERE I LEFT OFF!!!!!
-
 
 	return nullptr;
 }
