@@ -43,15 +43,24 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 Employee* Hash::Find(string keyVal) {
 	int hashValue = 0;
 	int index;
-		for (int i = 0; i < keyVal.length(); i++) {
-			hashValue += static_cast<int>(keyVal[i]);
-		}
-		index = hashValue % tableSize;
 
-	for (int i = 0; i < 20; i++) {
-		if (hashTable[index][i]->employee->employeeKey == keyVal)
-			return hashTable[index][i]->employee;
+	for (int i = 0; i < keyVal.length(); i++) {
+		hashValue += static_cast<int>(keyVal[i]);
 	}
+	index = hashValue % tableSize;
+
+// THIS IS WHERE I LEFT OFF!!!!!
+	for (int i = 0; i < 20; i++) {
+		if (hashTable[index][i] == nullptr)
+			break;
+		if (hashTable[index][i]->employee->employeeKey == keyVal) {
+			return hashTable[index][i]->employee;
+		}
+	}
+
+// THIS IS WHERE I LEFT OFF!!!!!
+
+
 	return nullptr;
 }
 

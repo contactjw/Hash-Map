@@ -39,31 +39,38 @@ int main() {
 
 	}
 
+	Employee* foundEmployee = nullptr;
+	string tempKey;
+	bool endLoop = false;
 
-//	Employee* foundEmployee = new Employee();
-//
-//	string tempKey;
-//	cout << "Enter an employee key and I will find it: ";
-//	cin >> tempKey;
-//
-//	newEmp->employeeKey = tempKey;
-//
-//	foundEmployee = newHashTable->Find(newEmp->employeeKey);
-//
-//
-//	cout << "\nFound Employee Information\n";
-//	cout << "Employee Key: " << foundEmployee->employeeKey << endl;
-//	cout << "Employee first name: " << foundEmployee->firstName << endl;
-//	cout << "Employee last name: " << foundEmployee->lastName << endl;
-//	cout << "Employee income: " << foundEmployee->income << endl;
+	while (!endLoop) {
+			cout << "Enter an employee key and I will find it, or enter end when done: ";
+			getline(cin, tempKey);
+			if (tempKey == "End" || tempKey == "end") {
+				endLoop = true;
+			}
+			else {
+				foundEmployee = newHashTable->Find(tempKey);
+				if (foundEmployee == nullptr) {
+					cout << "Employee not found. Try again.\n\n";
+				}
+				else {
+					cout << "\nFound Employee Information\n";
+					cout << "Employee Key: " << foundEmployee->employeeKey << endl;
+					cout << "Employee first name: " << foundEmployee->firstName << endl;
+					cout << "Employee last name: " << foundEmployee->lastName << endl;
+					cout << "Employee income: " << foundEmployee->income << endl;
+				}
+			}
+	}
 
-	cout << "\nCollision Count: " << newHashTable->CollisionCount() << endl;
+	cout << "\nTotal Collision Count: " << newHashTable->CollisionCount() << endl;
 
 	newHashTable->PrintCollisionCount();
 
-	cout << "Program ending.. goodbye!" << endl; // prints !!!Hello World!!!
-
+	cout << "\nProgram ending.. goodbye!" << endl;
 
 	iFile.close();
+
 	return 0;
 }
