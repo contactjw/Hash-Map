@@ -43,7 +43,6 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 	newHashNode->employee = emp;
 	if (hashTable[index][0] == nullptr) {
 		hashTable[index][0] = newHashNode;
-		cout << "HashNode properly inserted at index " << index << " bucket " << "0" << endl;
 		return true;
 	}
 	else {
@@ -53,7 +52,6 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 			collisionCount++;
 		}
 		hashTable[index][i] = newHashNode;
-		cout << "HashNode properly inserted at index " << index << " bucket " << i << endl;
 		return true;
 	}
 	return false;
