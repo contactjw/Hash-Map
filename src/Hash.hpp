@@ -14,7 +14,6 @@ public:
 	Employee* Find(string);
 	int CollisionCount();
 	void PrintCollisionCount();
-	void PrintARow(); // remove this function later
 	virtual ~Hash();
 
 	struct HashNode {
