@@ -23,9 +23,9 @@ public:
 	};
 
 private:
-	HashNode** hashTable[1000];
+	static const int tableSize = 1000;
+	HashNode** hashTable[tableSize];
 	int collisionCount;
-	int tableSize;
 
 };
 

@@ -1,9 +1,15 @@
 
 #include "Hash.hpp"
 
+// Description
+// 	- Constructor to set the collisionCounter to 0, and fill the array with Buckets of size 20.
+// Preconditions
+//  - must create a Hash object in order for constructor to execute.
+// Postconditions
+// 	- collisionCount is now 0.
+//  - each hashTable index now has an array of 20 available spaces for HashNode pointers.
 Hash::Hash() {
 	collisionCount = 0;
-	tableSize = 1000;
 	for (int i = 0; i < tableSize; i++) {
 		hashTable[i] = new HashNode*[20];
 	}
@@ -13,9 +19,15 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 	// Hash function
 	int hashValue = 0;
 	int index;
+
+	// This is not the simple hashing algorithm, but making sure words with the same letters
+	// ie. (ab and ba) do not get hashed to the same location.
+	// The simple algorithm would be to remove pow(), and just have
+	// hashValue = hashValue + static_cast<int>(keyVal[i]);
 	for (int i = 0; i < keyVal.length(); i++) {
-		hashValue = hashValue + static_cast<int>(keyVal[i]);
+		hashValue = hashValue + pow(static_cast<int>(keyVal[i]), i);
 	}
+
 	index = hashValue % tableSize;
 
 	// Create the HashNode to insert into table
@@ -71,7 +83,9 @@ void Hash::PrintCollisionCount() {
 			if (hashTable[i][j] != nullptr)
 				rowCollisions++;
 		}
-		cout << "Row index " << i + 1 << " had " << rowCollisions << " collisions." << endl;
+		cout << "---------------------------------" << endl;
+		cout << "Row index:" << i << endl;
+		cout << "# of Collisions: " << rowCollisions << endl;
 	}
 }
 
