@@ -16,6 +16,7 @@ public:
 	void PrintCollisionCount();
 	virtual ~Hash();
 
+
 	struct HashNode {
 		string keyValue;
 		Employee* employee;
