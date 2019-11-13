@@ -47,7 +47,6 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 		int i = 0;
 		while (hashTable[index][i] != nullptr) {
 			i++;
-			collisionCount++;
 		}
 		hashTable[index][i] = newHashNode;
 		return true;
@@ -92,6 +91,13 @@ Employee* Hash::Find(string keyVal) {
 // 	- The function returns the number of collisions that occurred during insertion.  If no
 //       collisions occurred, the value 0 is returned.
 int Hash::CollisionCount() {
+	for(int i = 0; i < tableSize; i++) {
+		for (int j = 1; j < 20; j++) {
+			if (hashTable[i][j] != nullptr) {
+				collisionCount++;
+			}
+		}
+	}
 	return collisionCount;
 }
 
