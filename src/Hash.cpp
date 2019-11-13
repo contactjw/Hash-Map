@@ -1,4 +1,3 @@
-
 #include "Hash.hpp"
 
 // Description
@@ -44,8 +43,7 @@ bool Hash::Insert(string keyVal, Employee* emp) {
 	if (hashTable[index][0] == nullptr) {
 		hashTable[index][0] = newHashNode;
 		return true;
-	}
-	else {
+	} else {
 		int i = 0;
 		while (hashTable[index][i] != nullptr) {
 			i++;
@@ -129,10 +127,8 @@ Hash::~Hash() {
 			delete hashTable[i][j]->employee;
 			hashTable[i][j]->employee = nullptr;
 			hashTable[i][j] = nullptr;
-			delete [] hashTable[j];
+			delete[] hashTable[j];
 		}
 	}
 }
-
-
 

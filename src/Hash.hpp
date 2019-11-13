@@ -1,4 +1,3 @@
-
 #ifndef HASH_HPP_
 #define HASH_HPP_
 #include <iostream>
@@ -15,7 +14,6 @@ public:
 	int CollisionCount();
 	void PrintCollisionCount();
 	virtual ~Hash();
-
 
 	struct HashNode {
 		string keyValue;
